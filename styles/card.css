@@ -1,0 +1,36 @@
+
+.cn__card-header {
+    background: white;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    min-width: 1465;
+}
+.cn__card-header img {
+    width: 30%;
+    height: 30%;
+}
+
+.cn__card-header-topBackground img{
+    width: 1418px;
+}
+.cn__card-level {
+    background: white;
+    display: flex;
+    flex-direction: row;
+}
+
+.cn__card-header_input {
+    display: flex;
+    flex-direction: row;
+}
+
+.cn__card-header_input h1 {
+    margin-top: 4rem;
+}
+
+.cn__card-note {
+    background: white;
+}
+
+
