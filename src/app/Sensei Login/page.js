@@ -1,41 +1,28 @@
-import React, { useState } from 'react';
 import styles from "../../styles/login.css"
+import { useForm } from '@mantine/form';
+import {TextInput, Button, Box } from '@mantine/core';
 
-
-const LoginPage = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-};
-
-const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle login logic here
-    console.log('Email:', email);
-    console.log('Password:', password);
-};
 
 
 export default function Home() {
+    const form = useForm({
+        initialValues: { name: '', email: '', age: 0 },
+    
+        // functions will be used to validate values at corresponding key
+        validate: {
+          email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
+          password: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid password'),
+        },
+      });
     return (
-        <div className={styles.container}>
-            <form className={styles.loginForm} onSubmit={handleSubmit}>
-                <h2>Login</h2>
-                <input
-                    type="email"
-                    placeholder="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                />
-                <input
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
-                <button type="submit">Login</button>
-            </form>
-        </div>
+        <Box maw={320} mx="auto">
+        <form onSubmit={form.onSubmit(console.log)}>
+          <TextInput label="Email" placeholder="Email" {...form.getInputProps('email')} />
+          <TextInput mt="sm" label="Password" placeholder="Password" {...form.getInputProps('password')} />
+          <Button type="submit" mt="sm">
+            Submit
+          </Button>
+        </form>
+      </Box>
     )
 }

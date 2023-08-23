@@ -1,6 +1,6 @@
 import React from "react";
 import "./Session.css";
-import { Card } from "../containers";
+import { Card } from "../src/containers";
 import mountain from "./assets/cn-gray.svg"
 
 const Session = () => {

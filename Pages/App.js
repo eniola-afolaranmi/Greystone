@@ -1,7 +1,7 @@
 import React from 'react';
 
-import {SenseiCard } from '../containers';
-import {NavBar } from '../components';
+import {SenseiCard } from '../src/containers';
+import {NavBar } from '../src/components';
 import './App.css';
 const App = () => {
   return (
