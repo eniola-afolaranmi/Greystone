@@ -5,12 +5,12 @@ import { TextInput, Button, Box } from "@mantine/core";
 
 export default function SenseiLogin() {
   const form = useForm({
-    initialValues: { name: "", email: "", age: 0 },
+    initialValues: { name: "", email: "" },
 
     // functions will be used to validate values at corresponding key
     validate: {
       email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
-      password: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid password"),
+      password: (value) => (/123/.test(value) ? null : "Invalid password"),
     },
   });
   return (
