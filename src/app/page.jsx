@@ -1,8 +1,32 @@
+"use client";
 import ninja from "../../assets/NinjaHero2.gif";
 import styles from "../../styles/header.css";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useForm } from "@mantine/form";
+import { Button, Group, Space, Textarea } from "@mantine/core";
+import Image from "next/image";
 
 export default function Home() {
+  const router = useRouter();
+  const handleClick = (formValues, href) => {
+    console.log(formValues);
+    if (formValues.name.length >= 1) {
+      router.push(href);
+    }
+  };
+  const formValues = useForm({
+    initialValues: {
+      name: "",
+      // date: "",
+    },
+    validate: {
+      name: (value) => {
+        value.length <= 0 ? "Name Required" : null;
+      },
+    },
+  });
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
@@ -70,20 +94,29 @@ export default function Home() {
           <h1 className={styles.h1}>Welcome to Progress Tracking</h1>
           <p className={styles.p}>See your childs progress in Impact</p>
           <div className="cn__header-content__input">
-            <input
-              type="childName"
-              placeholder="first name.lastname"
-            ></input>
-            <button
-              type="button"
-              className={styles.button}
-            >
-              Get started
-            </button>
+            <form onSubmit={formValues.onSubmit((values) => (formValues.setValues(values), formValues.validate()))}>
+              <Textarea
+                label="Ninja's Name"
+                placeholder="first name.last name: John.Smith"
+                withAsterisk
+                {...formValues.getInputProps("name")}
+              />
+              <Space h={"8vh"} />
+              <Group position="center">
+                <Button
+                  className="submitButton"
+                  type="submit"
+                  variant="outline"
+                  onClick={() => handleClick(formValues.values, `Card?ninjaName=${formValues.values.name}`)}
+                >
+                  Submit
+                </Button>
+              </Group>
+            </form>
           </div>
         </div>
         <div className="cn__header-image">
-          <img
+          <Image
             src={ninja}
             alt="ninja"
           />

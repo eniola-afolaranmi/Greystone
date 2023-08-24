@@ -19,6 +19,6 @@
       }
     ]
   },
-  "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx", "src/app/senseiLogin/page.js"],
+  "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx", "src/app/senseiLogin/page.js", "src/app/page.jsx"],
   "exclude": ["node_modules"]
 }
