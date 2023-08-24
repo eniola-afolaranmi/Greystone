@@ -1,0 +1,28 @@
+.cn__levelbar {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.cn__levelbar button {
+    padding: 0.5rem 1rem;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 25px;
+    background: #74c0fc;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+
+.cn__levelbar-dropdown-content p {
+    color: pink;
+}
+
+
+.cn__levelbar button:hover {
+    background-color: lightgray;
+}
