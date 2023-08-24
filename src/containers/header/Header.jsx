@@ -1,7 +1,7 @@
 import React from 'react';
 import './header.css';
-import people from '../../assets/people.png'
-import ninja from '../../assets/NinjaHero2.gif'
+import people from "assets/people.png";
+import ninja from "assets/NinjaHero2.gif";
 
 
 const Header = () => {
