@@ -1,14 +1,14 @@
 import { Box, Divider, Group, Popover } from '@mantine/core';
 import { IconTrophy, IconTool, IconWorld } from '@tabler/icons-react';
 import React from 'react';
-import './level.css';
+import styles from "level.css";
 
 const DropDown = () => (
   <>
     <Popover.Dropdown>
-      <p>Date Started: </p>
-      <p>Date Completed: </p>
-      <p>Time Spent: </p>
+      <p className={styles.p}>Date Started: </p>
+      <p className={styles.p}>Date Completed: </p>
+      <p className={styles.p}>Time Spent: </p>
     </Popover.Dropdown>
   </>
 )
