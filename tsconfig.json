@@ -1,10 +1,6 @@
 {
   "compilerOptions": {
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -24,19 +20,6 @@
     ],
     "strictNullChecks": true
   },
-<<<<<<< HEAD
-  "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx", "src/app/senseiLogin/page.js", "src/app/page.jsx"],
+  "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx", "src/app/senseiLogin/page.js"],
   "exclude": ["node_modules"]
-=======
-  "include": [
-    "next-env.d.ts",
-    ".next/types/**/*.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "src/app/senseiLogin/page.js"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
->>>>>>> 0a6304d232f61ba338f153dd6620fec3a887ee36
 }
