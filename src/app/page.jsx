@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { useForm } from "@mantine/form";
 import { Button, Group, MantineProvider, Space, Textarea } from "@mantine/core";
 import Image from "next/image";
-import Card from "/home/lapwell/Projects/Typescript/Greystone_2/src/app/Card/page.jsx";
+import Card from "/Greystone_2/src/app/Card/page.jsx";
 
 export default function Home() {
   const router = useRouter();
