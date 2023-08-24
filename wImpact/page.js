@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
-import { Feature } from "../../components";
+import { Feature } from "/components";
+import { Space } from "@mantine/core";
 
 const faqData = [
   {
@@ -23,7 +24,7 @@ const faqData = [
 
 export default function Card({ name, sensei, date, note }) {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="flex min-h-screen flex-col items-center justify-between p-24 ">
       <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
         <a
           href=""
@@ -81,14 +82,17 @@ export default function Card({ name, sensei, date, note }) {
           </h2>
         </a>
       </div>
-
+      <Space h="xl"/>
+      <Space h="xl"/>
+      <Space h="xl"/>
+      <Space h="xl"/>
       <div
         className="cn__faq section__padding"
         id="faq"
       >
         <div className="cn__faq-heading">
           <h1>Switching to a new curriculum can be hard, </h1>
-          <p>Were here to help!</p>
+          <p>We're here to help!</p>
         </div>
         <div className="cn__faq-containers">
           {faqData.map((item, index) => (

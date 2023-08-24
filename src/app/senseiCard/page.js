@@ -1,8 +1,8 @@
-import styles from "../../../styles/card.css";
+import styles from "/styles/card.css";
 import { React, useState } from "react";
-import background from "../../assets/background_img.png";
+import background from "/assets/background_img.png";
 import { Group, Grid, TextInput, Container, Rating } from "@mantine/core";
-import { SenseiLevel } from "../../components";
+import { SenseiLevel } from "/components";
 import { DatePickerInput } from "@mantine/dates";
 
 function NoteWriter() {

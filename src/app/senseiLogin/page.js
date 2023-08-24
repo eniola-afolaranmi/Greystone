@@ -17,6 +17,7 @@ export default function SenseiLogin() {
     <Box
       maw={320}
       mx="auto"
+      my="20rem"
     >
       <form onSubmit={form.onSubmit(console.log)}>
         <TextInput
@@ -33,6 +34,9 @@ export default function SenseiLogin() {
         <Button
           type="submit"
           mt="sm"
+          color="cyan"
+          radius="lg"
+          variant="outline"
         >
           Submit
         </Button>
