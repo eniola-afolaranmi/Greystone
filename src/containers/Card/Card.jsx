@@ -2,7 +2,7 @@ import React from 'react';
 import './card.css';
 import background from "/assets/background_img.png";
 import { Group, Rating, Grid, Box, Space } from "@mantine/core";
-import Level from "../../components/level/level.jsx";
+import Level from "../../components/level/Level.jsx/index.js";
 import blueBackground from "/assets/cn-blue.svg";
 // TODO: Make Card look nice
 const Card = ({ name, sensei, date, note }) => {
