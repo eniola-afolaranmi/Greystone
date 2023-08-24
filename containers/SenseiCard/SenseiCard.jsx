@@ -1,6 +1,6 @@
 import { React, useState } from 'react';
 import './senseicard.css';
-import background from "../../assets/background_img.png";
+import background from "assets/background_img.png";
 import { Group, Grid, TextInput, Container, Rating} from '@mantine/core';
 import { SenseiLevel } from "../../components"
 // import white from "../../assets/white-belt-ninja.png";

@@ -1,9 +1,10 @@
-import styles from "../../../styles/card.css"
+import styles from "/styles/card.css"
 import React, {useState} from 'react';
-import background from "../../assets/background_img.png";
+import background from "/assets/background_img.png";
 import { Group, Rating, Grid, Box, Space} from '@mantine/core';
 import { Level } from "./Level/level.jsx";
-import blueBackground from "../../assets/cn-blue.svg";
+import blueBackground from "/assets/cn-blue.svg";
+
 
 export default function Card({ name, sensei, date, note }) {
   return (
