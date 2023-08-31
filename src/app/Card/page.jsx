@@ -21,9 +21,10 @@ function GetName() {
 export default function Card() {
   const ninjaName = GetName();
   const ninjaData = getNinjaData(ninjaName);
-  // console.log("In Card", ninjaData);
+  console.log("In Card", ninjaData);
 
   const sensei = "Giga Nerd";
+
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">

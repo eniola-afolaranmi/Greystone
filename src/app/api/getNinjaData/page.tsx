@@ -46,7 +46,6 @@ export default async function getNinjaData(ninjaName: string): Promise<any> {
           yellowBeltData: null,
           orangeBeltData: null,
         };
-        console.log("In getNinjaData", finishedData);
         return new Promise((resolve) => {
           setTimeout(() => {
             finishedData;
