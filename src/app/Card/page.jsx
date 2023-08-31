@@ -1,81 +1,32 @@
 "use client";
 import styles from "../../../styles/card.css";
-import React, { useState } from "react";
-import background from "/assets/background_img.png";
+import React, { useEffect, useState } from "react";
+import background from "/public/background_img.png";
+import blueBackground from "/public/cn-blue.svg";
 import { Group, Rating, Grid, Box, Space } from "@mantine/core";
 import Level from "./Level/Level.jsx";
-import blueBackground from "/assets/cn-blue.svg";
 import Image from "next/image";
+import getNinjaData from "../api/getNinjaData/page";
 import { useSearchParams } from "next/navigation";
 
-export default function Card() {
-  const sensei = "sensei";
-  const note = "blyat";
-
+function GetName() {
   //Get the ninja name from the url and convert it to lower case.
   const searchParams = useSearchParams();
   let ninjaName = searchParams.get("ninjaName");
+  //@ts-ignore
   ninjaName = ninjaName.toLowerCase();
+  return ninjaName;
+}
+
+export default function Card() {
+  const ninjaName = GetName();
+  const ninjaData = getNinjaData(ninjaName);
+  // console.log("In Card", ninjaData);
+
+  const sensei = "Giga Nerd";
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      {/* <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href=""
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Home{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-        </a>
-
-        <a
-          href=""
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Whats Impact?{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-        </a>
-
-        <a
-          href=""
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Im a Sensei{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-        </a>
-
-        <a
-          href=""
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn more{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-        </a>
-      </div> */}
       <div className="cn__card-header">
         <Group>
           <div className="cn__card-header-topBackground">
@@ -113,7 +64,7 @@ export default function Card() {
                   },
                 })}
               >
-                <h1>Ninja: {name}</h1>
+                <h1>Ninja: {ninjaName}</h1>
               </Box>
             </Grid.Col>
             <Grid.Col
@@ -187,7 +138,7 @@ export default function Card() {
       </div>
       <div className="cn__card-note">
         <Space h="5rem" />
-        <h1>Notes: {note}</h1>
+        {/* <h1>Notes: {ninjaData.notes}</h1> */}
       </div>
     </main>
   );

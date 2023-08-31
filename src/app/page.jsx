@@ -6,11 +6,9 @@ import { useRouter } from "next/navigation";
 import { useForm } from "@mantine/form";
 import { Button, Group, MantineProvider, Space, Textarea } from "@mantine/core";
 import Image from "next/image";
-import Card from "/Card/page.jsx";
 
 export default function Home() {
   const router = useRouter();
-  console.log(Card);
   const handleClick = (formValues, href) => {
     console.log(formValues);
     if (formValues.name.length >= 1) {
