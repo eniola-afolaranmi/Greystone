@@ -19,24 +19,9 @@ export default function RootStyleRegistry({ children }: { children: React.ReactN
   return (
     <CacheProvider value={cache}>
       <MantineProvider
+        withCSSVariables
         withGlobalStyles
         withNormalizeCSS
-        theme={{
-          colorScheme: "light",
-          globalStyles: (theme) => ({
-            "*, *::before, *::after": {
-              boxSizing: "border-box",
-            },
-
-            body: {
-              ...theme.fn.fontStyles(),
-              backgroundColor: theme.colorScheme === "light" ? theme.colors.gray[2] : theme.white,
-              color: theme.colorScheme === "light" ? theme.colors.dark[0] : theme.black,
-              lineHeight: theme.lineHeight,
-              textAlign: "left",
-            },
-          }),
-        }}
       >
         {children}
       </MantineProvider>

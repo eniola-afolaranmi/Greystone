@@ -46,11 +46,7 @@ export default async function getNinjaData(ninjaName: string): Promise<any> {
           yellowBeltData: null,
           orangeBeltData: null,
         };
-        return new Promise((resolve) => {
-          setTimeout(() => {
-            finishedData;
-          }, 1000);
-        });
+        return new Promise((resolve) => {});
       }
     })
     //This catches any errors that might happen. A common one would be wrong spelling or the user not existing in the DB.

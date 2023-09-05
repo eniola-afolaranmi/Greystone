@@ -20,11 +20,21 @@ function GetName() {
 
 export default function Card() {
   const ninjaName = GetName();
-  const ninjaData = getNinjaData(ninjaName);
-  console.log("In Card", ninjaData);
-
+  const [ninjaData, setNinjaData] = useState("");
+  // const ninjaData = getNinjaData(ninjaName).then((resolve) => {
+  //   return resolve;
+  // });
   const sensei = "Giga Nerd";
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = getNinjaData(ninjaName);
+      setNinjaData(data);
+    };
+    fetchData();
+  }, [ninjaName]);
+
+  console.log("In Card", ninjaData);
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
