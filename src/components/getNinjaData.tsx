@@ -1,6 +1,8 @@
 import { createClient } from "@supabase/supabase-js";
-import { finished } from "stream";
-const supabase = createClient(process.env.NEXT_PUBLIC_URL!, process.env.NEXT_PUBLIC_ANON_KEY!);
+
+const supabase = createClient(process.env.NEXT_PUBLIC_URL!, process.env.NEXT_PUBLIC_ANON_KEY!, {
+  auth: { persistSession: false },
+});
 
 //This type-alias is used when parsing the relevant data for the Ninja from the returned API data.
 interface NinjaData {
@@ -46,7 +48,7 @@ export default async function getNinjaData(ninjaName: string): Promise<any> {
           yellowBeltData: null,
           orangeBeltData: null,
         };
-        return new Promise((resolve) => {});
+        return finishedData;
       }
     })
     //This catches any errors that might happen. A common one would be wrong spelling or the user not existing in the DB.

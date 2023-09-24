@@ -5,13 +5,12 @@ import { useForm } from "@mantine/form";
 import Image from "next/image";
 import styles from "/styles/header.css";
 import ninja from "/public/NinjaHero2.gif";
-import Navbar from "../components/Navbar";
 
 export default function Home() {
   const router = useRouter();
+
   const handleClick = (formValues, href) => {
-    console.log(formValues);
-    if (formValues.name.length >= 1) {
+    if (formValues.name.length > 0) {
       router.push(href);
     }
   };
@@ -31,7 +30,6 @@ export default function Home() {
   return (
     <MantineProvider>
       <main className="flex min-h-screen flex-col items-center justify-between p-24">
-        <Navbar />
         <div
           className="cn__header section__padding"
           id="home"
@@ -53,7 +51,7 @@ export default function Home() {
                     className="submitButton"
                     type="submit"
                     variant="outline"
-                    onClick={() => handleClick(formValues.values, `/Card?ninjaName=${formValues.values.name}`)}
+                    onClick={() => handleClick(formValues.values, `/pages/card/?ninjaName=${formValues.values.name}`)}
                   >
                     Submit
                   </Button>

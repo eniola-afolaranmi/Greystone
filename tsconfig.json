@@ -20,6 +20,6 @@
     ],
     "strictNullChecks": true
   },
-  "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx", "src/app/senseiLogin/page.js"],
+  "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx", "src/pages/Card/senseiLogin/page.js"],
   "exclude": ["node_modules"]
 }
