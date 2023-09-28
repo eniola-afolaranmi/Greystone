@@ -9,7 +9,9 @@ function GetName() {
 export default function Card() {
   return (
     <div className="cn__card-level">
-      <GenerateWhiteBelt />
+      <pre>
+        <GenerateWhiteBelt />
+      </pre>
     </div>
   );
 }
