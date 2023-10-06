@@ -1,16 +1,11 @@
-import { useSearchParams } from "next/navigation";
-import GenerateWhiteBelt from "../../../components/cards/generateWhiteBelt";
-
-function GetName() {
-  const searchParams = useSearchParams();
-  return searchParams.get("ninjaName");
-}
+import WhiteBeltCard from "../../../components/cards/whiteCard/whiteBelt";
 
 export default function Card() {
   return (
-    <div className="cn__card-level">
+    <div className="cn__card-level text-black">
       <pre>
-        <GenerateWhiteBelt />
+        {/* @ts-ignore */}
+        <WhiteBeltCard />
       </pre>
     </div>
   );

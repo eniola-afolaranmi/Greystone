@@ -1,5 +1,4 @@
 export interface NinjaData {
-  notes: Object;
   current_belt: any;
   currentActivityID: any;
   whiteBeltData: Array<string> | null | undefined;
