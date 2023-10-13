@@ -1,17 +1,6 @@
 // "use client";
 import Image from "next/image";
 
-function generateLevels(beltData: object) {
-  let finishedLevels: any = [];
-  for (let level = 0; level < Object.keys(beltData).length; level++) {
-    finishedLevels.push([]);
-    for (let item = 0; item < level; item++) {
-      finishedLevels[-1];
-    }
-  }
-  return finishedLevels;
-}
-
 export default function CardTemplate({ beltName, beltData, ninjaImage }: any) {
   return (
     <div className="text-[#034586] rounded-md bg-red-500">
@@ -20,12 +9,12 @@ export default function CardTemplate({ beltName, beltData, ninjaImage }: any) {
           <Image
             src={ninjaImage}
             alt="Ninja image for the card."
-            width={60}
-            height={60}
+            width={52}
+            height={52}
           />
           <p>{beltName}</p>
         </div>
-        <div className="levels flex flex-row items-center">{generateLevels(beltData)}</div>
+        <div className="levels grid grid-cols-2">{beltData}</div>
       </div>
     </div>
   );

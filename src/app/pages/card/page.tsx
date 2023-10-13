@@ -1,3 +1,4 @@
+"use client";
 import WhiteBeltCard from "../../../components/cards/whiteCard/whiteBelt";
 import { useSearchParams } from "next/navigation";
 
@@ -9,11 +10,11 @@ const GetName = () => {
 
 export default function Card() {
   return (
-    <div>
-      <pre>
+    <pre>
+      <div>
         {/* @ts-ignore */}
-        <WhiteBeltCard ninjaName={"byron.corbett"} />
-      </pre>
-    </div>
+        <WhiteBeltCard ninjaName={GetName()} />
+      </div>
+    </pre>
   );
 }
