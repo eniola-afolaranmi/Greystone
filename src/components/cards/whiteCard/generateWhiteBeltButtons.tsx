@@ -3,10 +3,9 @@ import GenerateButton from "../generateActivityButton";
 
 //This function is designed to loop over each level and generate buttons that display
 //the relevant data for each activity.
-export default async function GenerateWhiteBeltButtons(ninjaName: any) {
+export default async function GenerateWhiteBeltButtons(ninjaName: string) {
   let parsed_levels: any[] = [];
   let index = 1;
-
   let ninjaData = await GetData(ninjaName).then((resolve) => {
     return resolve;
   });
@@ -23,7 +22,6 @@ export default async function GenerateWhiteBeltButtons(ninjaName: any) {
     //Each activity newly generated button is then placed into it's levels nested array.
     //Item is each individial activity.
     for (let item = 0; item < Object.keys(currentLevel).length; item++) {
-      // console.log(currentLevel[item].Notes);
       parsed_levels[level].push(
         GenerateButton(currentLevel[item], index, ninjaData.currentActivityID, currentLevel[item].Notes)
       );

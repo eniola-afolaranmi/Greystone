@@ -17,7 +17,6 @@ function parseNotes(notes: any) {
 }
 
 export function GetBuildIcon({ color, size, activityName, notes }: any) {
-  console.log(parseNotes(notes));
   return (
     <Popover
       width={popoverWidth}

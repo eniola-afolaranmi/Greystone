@@ -2,7 +2,6 @@ import * as btn from "./iconButtons";
 
 export default function GenerateButton(activity: any, activityIndex: number, currentActivityID: number, activityNotes: any) {
   //The reason activity_name is like this is because that is how the DB columns are named.
-  console.log();
   const activityName = activity.activity_name;
   const activityType = activityName.substring(0, activityName.indexOf(":"));
   const notes = activityNotes != 0 ? activityNotes : "No Notes";
@@ -11,14 +10,14 @@ export default function GenerateButton(activity: any, activityIndex: number, cur
 
   //Checks to see what colour this specific buttons should be. Green is completed (less than currentActivityID).
   //Yellow is current working project.
-  //White is not reached.
+  //grey is not reached.
   if (currentActivityID > activity.activity_id) {
     colour = "green";
   } else if (currentActivityID == activity.activity_id) {
     colour = "yellow";
     sizeValue = 25;
   } else {
-    colour = "white";
+    colour = "grey";
   }
 
   switch (activityType) {

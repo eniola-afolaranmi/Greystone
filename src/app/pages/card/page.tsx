@@ -1,11 +1,18 @@
 import WhiteBeltCard from "../../../components/cards/whiteCard/whiteBelt";
+import { useSearchParams } from "next/navigation";
+
+const GetName = () => {
+  const searchParams = useSearchParams();
+  const search = searchParams.get("ninjaName");
+  return search;
+};
 
 export default function Card() {
   return (
-    <div className="cn__card-level text-black">
+    <div>
       <pre>
         {/* @ts-ignore */}
-        <WhiteBeltCard />
+        <WhiteBeltCard ninjaName={"byron.corbett"} />
       </pre>
     </div>
   );

@@ -7,13 +7,13 @@ const supabase = createClient(process.env.NEXT_PUBLIC_URL!, process.env.NEXT_PUB
 
 export default async function GetData(ninjaName: string): Promise<any> {
   //This fetches all the notes related to the ninja from the DB.
-  const notes = await supabase
-    .from("Ninjas")
-    .select("Notes(*)")
-    .eq("name", ninjaName)
-    .then((data) => {
-      return JSON.parse(JSON.stringify(data.data));
-    });
+  // const notes = await supabase
+  //   .from("Ninjas")
+  //   .select("Notes(*)")
+  //   .eq("name", ninjaName)
+  //   .then((data) => {
+  //     return JSON.parse(JSON.stringify(data.data));
+  //   });
 
   //This fetches all the relevant data for a specific ninja. It then puts it into an object called finishedData
   //and returns it for the rest of the server to use in creating the UI/UX for the client.

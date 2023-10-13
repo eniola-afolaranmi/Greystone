@@ -18,7 +18,7 @@
     font-size: 62px;
     line-height: 75px;
     letter-spacing: -0.04em;
-    color: #034586; 
+    color: #034586;
 
 }
 
@@ -41,7 +41,7 @@
 
 .cn__header-content__input input {
     background: #052d56;
-    
+
     font-family: 'Quicksand', 'Times New Roman', Times, serif;
     border: 2px solid #031B34;
     padding: 0 1rem;
@@ -61,7 +61,7 @@
     width: 100%;
     min-height: 50px;
     background: #ADD8E6;
-   
+
     transform: matrix(1, 0, 0, 1, 0, 0);
     font-family: 'Manrope', sans-serif;
     font-weight: bold;
@@ -137,7 +137,7 @@
     .cn__header-content__people {
         flex-direction: column;
     }
-    
+
     .cn__header-content__people p {
         margin: 0;
     }
