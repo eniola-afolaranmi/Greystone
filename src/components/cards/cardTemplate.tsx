@@ -1,6 +1,7 @@
-// "use client";
 import Image from "next/image";
 
+//This component works by accepting the generated activity buttons and creating
+//a new card component from it.
 export default function CardTemplate({ beltName, beltData, ninjaImage }: any) {
   return (
     <div className="text-[#034586] rounded-md bg-red-500">

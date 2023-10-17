@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useForm } from "@mantine/form";
 import Image from "next/image";
 import styles from "/styles/header.css";
-import ninja from "/public/NinjaHero2.gif";
+import ninja from "/public/Ninjas/NinjaHero2.gif";
 
 export default function Home() {
   const router = useRouter();

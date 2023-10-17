@@ -4,4 +4,5 @@ export interface NinjaData {
   whiteBeltData: Array<string> | null | undefined;
   yellowBeltData: Array<string> | null | undefined;
   orangeBeltData: Array<string> | null | undefined;
+
 }

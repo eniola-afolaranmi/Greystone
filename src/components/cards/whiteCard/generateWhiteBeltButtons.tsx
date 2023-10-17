@@ -7,14 +7,14 @@ export default async function GenerateWhiteBeltButtons(ninjaName: string) {
   let parsedLevels: any[] = [];
   let finalData: any[] = [];
   let index = 1;
+
   let ninjaData = await GetData(ninjaName).then((resolve) => {
     return resolve;
   });
 
   const allWhiteLevels = ninjaData.whiteBeltData;
-  // console.log(ninjaData);
 
-  //level is for each individial level in the belt.
+  //This loop goes over each level in the object and then goes through each activity to generate button components for them.
   for (let level = 0; level < Object.keys(allWhiteLevels).length; level++) {
     let currentLevel = allWhiteLevels[level].Activities;
     parsedLevels.push([]);

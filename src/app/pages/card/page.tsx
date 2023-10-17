@@ -1,5 +1,5 @@
-"use client";
 import WhiteBeltCard from "../../../components/cards/whiteCard/whiteBelt";
+import BackgroundImage from "../../../components/backgroundImage";
 import { useSearchParams } from "next/navigation";
 
 const GetName = () => {
@@ -11,9 +11,10 @@ const GetName = () => {
 export default function Card() {
   return (
     <pre>
-      <div>
-        {/* @ts-ignore */}
-        <WhiteBeltCard ninjaName={GetName()} />
+      <div className="h-full">
+        <div>
+          <WhiteBeltCard ninjaName={"byron.corbett"} />
+        </div>
       </div>
     </pre>
   );
