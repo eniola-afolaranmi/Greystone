@@ -41,7 +41,7 @@ export default function Home() {
               <form onSubmit={formValues.onSubmit((values) => (formValues.setValues(values), formValues.validate()))}>
                 <Textarea
                   label="Ninja's Name"
-                  placeholder="first name.last name: John.Smith"
+                  placeholder="John.Smith"
                   withAsterisk
                   {...formValues.getInputProps("name")}
                 />

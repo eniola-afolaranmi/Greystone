@@ -23,7 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         suppressHydrationWarning
       >
         <RootStyleRegistry>
-          <div className="Navbar relative">
+          <div className="NavbarDiv relative h-52">
             <BackgroundImage
               src="/cn-gray.svg"
               alt="navbar gray background image"

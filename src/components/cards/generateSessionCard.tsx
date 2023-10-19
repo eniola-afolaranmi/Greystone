@@ -1,9 +1,9 @@
-import GetData from "../../getData";
-import GenerateButton from "../generateActivityButton";
+import GetData from "../getData";
+import GenerateButton from "./generateActivityButton";
 
 //This function is designed to loop over each level and generate buttons that display
 //the relevant data for each activity.
-export default async function GenerateWhiteBeltButtons(ninjaName: string) {
+export default async function GenerateSessionCard(ninjaName: string) {
   let parsedLevels: any[] = [];
   let finalData: any[] = [];
   let index = 1;
@@ -29,13 +29,14 @@ export default async function GenerateWhiteBeltButtons(ninjaName: string) {
       index++;
     }
   }
-  for (let element = 0; element < Object.keys(parsedLevels).length; element++) {
+  //This loop goes through each level and order the buttons like the physical session cards.
+  for (let button = 0; button < Object.keys(parsedLevels).length; button++) {
     finalData.push(
       <div
-        key={"level" + element}
+        key={"level" + button}
         className="flex flex-row items-end m-1"
       >
-        {parsedLevels[element]}
+        {parsedLevels[button]}
       </div>
     );
   }

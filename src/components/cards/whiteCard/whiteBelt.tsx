@@ -1,8 +1,8 @@
 import CardTemplate from "../cardTemplate";
-import GenerateWhiteBeltButtons from "./generateWhiteBeltButtons";
+import GenerateSessionCard from "../generateSessionCard";
 
 export default async function WhiteBeltCard(ninjaName: any) {
-  const beltData = await GenerateWhiteBeltButtons(ninjaName.ninjaName).then((resolve) => {
+  const beltData = await GenerateSessionCard(ninjaName.ninjaName).then((resolve) => {
     return resolve.props.children;
   });
   return (
@@ -11,7 +11,7 @@ export default async function WhiteBeltCard(ninjaName: any) {
         <CardTemplate
           beltName="White"
           beltData={beltData}
-          ninjaImage="/beltImages/white-belt-ninja.png"
+          ninjaImage="/BeltImages/white-belt-ninja.png"
         />
       </div>
     </pre>

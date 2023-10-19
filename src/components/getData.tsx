@@ -13,7 +13,7 @@ export default async function GetData(ninjaName: string): Promise<any> {
     //.select() goes through each table, grabbing the needed data as it goes.
     //Each table has a foreign key associated with the nested table.
     .from("Ninjas")
-    .select("*, Belts(belt_name, Levels(Activities(activity_id, activity_name, Notes(note)))))")
+    .select("*, Belts(belt_name, Levels(Activities(activity_id, activity_name, Notes(note, focus_level)))))")
     .order("activity_id", { foreignTable: "Belts.Levels.Activities", ascending: true })
     .eq("name", ninjaName)
     .then((resolve) => {
