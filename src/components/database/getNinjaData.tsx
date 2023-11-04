@@ -1,11 +1,21 @@
 import { createClient } from "@supabase/supabase-js";
-import type { NinjaData } from "./types";
+import type { NinjaData } from "../types";
 
 const supabase = createClient(process.env.NEXT_PUBLIC_URL!, process.env.NEXT_PUBLIC_ANON_KEY!, {
   auth: { persistSession: false },
 });
 
 export default async function GetData(ninjaName: string): Promise<any> {
+  //This is a super quick call to get the ninja's belt id for the puropse of filtering the rest of their data.
+  // const beltID = await supabase
+  //   .from("Ninjas")
+  //   .select("current_belt_id")
+  //   .eq("name", ninjaName)
+  //   .then((resolve) => {
+  //     // console.log(resolve);
+  //     return resolve.data![0].current_belt_id;
+  //   });
+
   //This fetches all the relevant data for a specific ninja. It then puts it into an object called finishedData
   //and returns it for the rest of the server to use in creating the UI/UX for the client.
   const progress = await supabase
@@ -13,23 +23,22 @@ export default async function GetData(ninjaName: string): Promise<any> {
     //.select() goes through each table, grabbing the needed data as it goes.
     //Each table has a foreign key associated with the nested table.
     .from("Ninjas")
-    .select("*, Belts(belt_name, Levels(Activities(activity_id, activity_name, Notes(note, focus_level)))))")
+    .select("*, Belts(belt_name, Levels(level_name, Activities(activity_id, activity_name, Notes(note, focus_level))))")
     .order("activity_id", { foreignTable: "Belts.Levels.Activities", ascending: true })
     .eq("name", ninjaName)
     .then((resolve) => {
-      //Convert the fetched JSON into usable string data for the webpage.
-      const parsedData = JSON.parse(JSON.stringify(resolve.data));
-      //Checks to see if the packet actually has something in it.
-      if (Object.keys(resolve).length > 0) {
+      console.log(resolve);
+      //Checks to see if the packet is not null and that resolve.data has something in it.
+      if (resolve.data != null && Object.keys(resolve.data).length > 0) {
+        //Convert the fetched JSON into usable string data for the webpage.
+        const parsedData = JSON.parse(JSON.stringify(resolve.data[0]));
+        console.log(parsedData);
         //This object stores all the ninja's data and returns it.
         let finishedData: NinjaData = {
-          current_belt: parsedData[0].Belts.belt_name,
-          currentActivityID: parsedData[0].current_activity_id,
-          whiteBeltData: parsedData[0].Belts.Levels,
-          yellowBeltData: null,
-          orangeBeltData: null,
+          current_belt: parsedData.Belts.belt_name,
+          currentActivityID: parsedData.current_activity_id,
+          beltData: parsedData.Belts.Levels,
         };
-        // console.log("GetData", parsedData[0].Belts.Levels[0].Activities[0].Notes);
         return finishedData;
       }
     })

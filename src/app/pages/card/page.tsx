@@ -1,6 +1,6 @@
-import WhiteBeltCard from "../../../components/cards/whiteCard/whiteBelt";
-import BackgroundImage from "../../../components/backgroundImage";
+import GenerateSessionCard from "../../../components/cards/generateSessionCard";
 import { useSearchParams } from "next/navigation";
+import NinjaCard from "../../../components/cards/ninjaCard/ninjaCard";
 
 const GetName = () => {
   const searchParams = useSearchParams();
@@ -8,12 +8,19 @@ const GetName = () => {
   return search;
 };
 
-export default function Card() {
+export default async function Card() {
+  //@ts-ignore
+  const beltData = await GenerateSessionCard("byronius.maximus").then((resolve) => {
+    return resolve.props.children;
+  });
   return (
     <pre>
       <div className="h-full">
         <div>
-          <WhiteBeltCard ninjaName={"byron.corbett"} />
+          <NinjaCard
+            beltName="White"
+            beltData={beltData}
+          />
         </div>
       </div>
     </pre>

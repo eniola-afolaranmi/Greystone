@@ -1,15 +1,12 @@
 import CardTemplate from "../cardTemplate";
 import GenerateSessionCard from "../generateSessionCard";
 
-export default async function WhiteBeltCard(ninjaName: any) {
-  const beltData = await GenerateSessionCard(ninjaName.ninjaName).then((resolve) => {
-    return resolve.props.children;
-  });
+export default async function NinjaCard({ beltName, beltData }: any) {
   return (
     <pre>
       <div className="grid grid-cols-2 mt-16 text-[#034586] justify-items-center">
         <CardTemplate
-          beltName="White"
+          beltName={beltName}
           beltData={beltData}
           ninjaImage="/BeltImages/white-belt-ninja.png"
         />

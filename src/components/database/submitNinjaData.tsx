@@ -45,11 +45,13 @@ export async function getDatabaseData(name: string, activityName: string) {
   return finalData;
 }
 
-//This function is for submitting/inserting now notes into supabase
-export default async function submitNote(ninjaName: string, note: string, activityName: string) {
+//This function is for submitting/inserting new notes into supabase
+export default async function submitNote(ninjaName: string, note: string, activityName: string, focusLevel: number) {
   const data = await getDatabaseData(ninjaName, activityName).then((resolve) => {
     console.log("POST", resolve);
     return resolve;
   });
-  await supabase.from("Notes").upsert({ activity_id: data.activityID, ninja_id: data.ninjaID, note: note });
+  await supabase
+    .from("Notes")
+    .upsert({ activity_id: data.activityID, ninja_id: data.ninjaID, note: note, focus_level: focusLevel });
 }

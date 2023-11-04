@@ -1,4 +1,4 @@
-import GetData from "../getData";
+import getNinjaData from "../database/getNinjaData";
 import GenerateButton from "./generateActivityButton";
 
 //This function is designed to loop over each level and generate buttons that display
@@ -8,15 +8,14 @@ export default async function GenerateSessionCard(ninjaName: string) {
   let finalData: any[] = [];
   let index = 1;
 
-  let ninjaData = await GetData(ninjaName).then((resolve) => {
+  let ninjaData = await getNinjaData(ninjaName).then((resolve) => {
+    console.log("getNinjaData resolve", resolve);
     return resolve;
   });
 
-  const allWhiteLevels = ninjaData.whiteBeltData;
-
   //This loop goes over each level in the object and then goes through each activity to generate button components for them.
-  for (let level = 0; level < Object.keys(allWhiteLevels).length; level++) {
-    let currentLevel = allWhiteLevels[level].Activities;
+  for (let level = 0; level < Object.keys(ninjaData.beltData).length; level++) {
+    let currentLevel = ninjaData.beltData[level].Activities;
     parsedLevels.push([]);
     //Loop over each activity inside a level.
     //Creates a react component for each activity. The components are buttons with the associated activity name, note, status, etc.
