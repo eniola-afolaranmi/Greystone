@@ -1,6 +1,6 @@
 import * as btn from "./iconButtons";
 
-export default function GenerateButton(activity: any, activityIndex: number, currentActivityID: number, activityNotes: any) {
+export default function GenerateButton(activity, activityIndex, currentActivityID, activityNotes) {
   //The reason activity_name is like this is because that is how the DB columns are named.
   const activityName = activity.activity_name;
   const activityType = activityName.substring(0, activityName.indexOf(":"));

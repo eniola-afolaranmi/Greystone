@@ -2,7 +2,7 @@
 import { Flex, Group, Space, Center, Button } from "@mantine/core";
 import * as iconButtons from "./iconButtons";
 
-export default function generateActivityButton(activity: any, level: any, le_note: any) {
+export default function generateActivityButton(activity, level, le_note) {
   const name = activity.activity_name;
   const size_value = 20;
   const activity_type = name.substring(0, name.indexOf(":"));

@@ -5,7 +5,7 @@ import { IconTool, IconPlanet, IconBug, IconTrophy } from "@tabler/icons-react";
 const popoverWidth = 300;
 const scrollbarHeight = 75;
 
-function parseNotes(notes: any) {
+function parseNotes(notes) {
   if (notes == ("No Notes" || undefined)) {
     return;
   }
@@ -16,7 +16,7 @@ function parseNotes(notes: any) {
   return newNotes;
 }
 
-export function GetBuildIcon({ color, size, activityName, notes }: any) {
+export function GetBuildIcon({ color, size, activityName, notes }) {
   return (
     <Popover
       width={popoverWidth}
@@ -47,7 +47,7 @@ export function GetBuildIcon({ color, size, activityName, notes }: any) {
   );
 }
 
-export function GetExploreIcon({ color, size, activityName, notes }: any) {
+export function GetExploreIcon({ color, size, activityName, notes }) {
   return (
     <Popover
       width={popoverWidth}
@@ -74,7 +74,7 @@ export function GetExploreIcon({ color, size, activityName, notes }: any) {
   );
 }
 
-export function GetSolveIcon({ color, size, activityName, notes }: any) {
+export function GetSolveIcon({ color, size, activityName, notes }) {
   return (
     <Popover
       width={popoverWidth}
@@ -101,7 +101,7 @@ export function GetSolveIcon({ color, size, activityName, notes }: any) {
   );
 }
 
-export function GetTrophyIcon({ color, size, activityName, notes }: any) {
+export function GetTrophyIcon({ color, size, activityName, notes }) {
   return (
     <Popover
       width={popoverWidth}
@@ -128,7 +128,7 @@ export function GetTrophyIcon({ color, size, activityName, notes }: any) {
   );
 }
 
-export function GetDiscoveryIcon({ color, size, activityName, notes }: any) {
+export function GetDiscoveryIcon({ color, size, activityName, notes }) {
   return (
     <Popover
       width={popoverWidth}

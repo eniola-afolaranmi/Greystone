@@ -1,47 +1,36 @@
 import { createClient } from "@supabase/supabase-js";
-import type { NinjaData } from "../types";
+import { NinjaData } from "../../types/databaseTypes";
 
 const supabase = createClient(process.env.NEXT_PUBLIC_URL!, process.env.NEXT_PUBLIC_ANON_KEY!, {
   auth: { persistSession: false },
 });
 
-export default async function GetData(ninjaName: string): Promise<any> {
-  //This is a super quick call to get the ninja's belt id for the puropse of filtering the rest of their data.
-  // const beltID = await supabase
-  //   .from("Ninjas")
-  //   .select("current_belt_id")
-  //   .eq("name", ninjaName)
-  //   .then((resolve) => {
-  //     // console.log(resolve);
-  //     return resolve.data![0].current_belt_id;
-  //   });
-
-  //This fetches all the relevant data for a specific ninja. It then puts it into an object called finishedData
-  //and returns it for the rest of the server to use in creating the UI/UX for the client.
-  const progress = await supabase
-    //This grabs all the relevant data from the DB
-    //.select() goes through each table, grabbing the needed data as it goes.
-    //Each table has a foreign key associated with the nested table.
+//This async-function is to get a given ninja's data. When called it needs a valid name in the format "firstname.lastname".
+export default async function getNinjaData(ninjaName: string | undefined) {
+  //.from() determines which database we are accessing.
+  //.select() determines which tables, foreign tables, and columns we are grabbing.
+  //In order for a table to access a foreign table, it must have a foreign key associated with the foreign table (typically the primary key)
+  //.eq(), or equate, filters the rows so we only get ones that have what we are looking for (the ninja's name in this case).
+  //.then() is from async. It runs an unnamed arrow function, that we define, once the await promise returns.
+  return await supabase
     .from("Ninjas")
-    .select("*, Belts(belt_name, Levels(level_name, Activities(activity_id, activity_name, Notes(note, focus_level))))")
-    .order("activity_id", { foreignTable: "Belts.Levels.Activities", ascending: true })
+    .select("*, Notes(activity_id, focus_level, note)")
+    .order("ninja_id", { ascending: true })
     .eq("name", ninjaName)
     .then((resolve) => {
-      console.log(resolve);
       //Checks to see if the packet is not null and that resolve.data has something in it.
       if (resolve.data != null && Object.keys(resolve.data).length > 0) {
-        //Convert the fetched JSON into usable string data for the webpage.
-        const parsedData = JSON.parse(JSON.stringify(resolve.data[0]));
-        console.log(parsedData);
-        //This object stores all the ninja's data and returns it.
-        let finishedData: NinjaData = {
-          current_belt: parsedData.Belts.belt_name,
-          currentActivityID: parsedData.current_activity_id,
-          beltData: parsedData.Belts.Levels,
+        //Convert the fetched JSON into usable string data.
+        const parsed = JSON.parse(JSON.stringify(resolve.data[0]));
+        const ninjaData: NinjaData = {
+          id: parsed.ninja_id,
+          name: parsed.name,
+          currentActivity: parsed.current_activity_id,
+          currentBelt: parsed.current_belt_id,
+          notes: parsed.Notes.reverse(),
         };
-        return finishedData;
+        return ninjaData;
       }
-    })
-    .then(undefined || null, (err) => <>Something went wrong! {err}</>);
-  return progress;
+    });
+  // .then(undefined || null, (err) => <>Something went wrong! {err}</>);
 }

@@ -10,8 +10,8 @@ const GetName = () => {
 
 export default async function Card() {
   //@ts-ignore
-  const beltData = await GenerateSessionCard("byronius.maximus").then((resolve) => {
-    return resolve.props.children;
+  const beltData = await GenerateSessionCard("byron.corbett").then((resolve) => {
+    // return resolve.props.children;
   });
   return (
     <pre>

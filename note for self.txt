@@ -1,0 +1,12 @@
+In order to get all the data for a ninja (both the current belt and past belts) we need to do two seperate calls.
+
+Two things need to be done:
+    -ninjaData: One call will need to get all the data for a ninja (notes, current belt/activity, etc).
+    -impactData: The second call will get all the activities in a belt up to the ninja's current belt.
+    (maybe more, depends on what jesse wants)
+
+After the two calls are done, you will need to then parse them. A new object/array (parsedData) will be made from ninjaData
+and impactData. This new object, parsedData, will match the notes from ninjaData to the activities in impactData.
+
+The component that will create parsedData will also need to be able to output a "blank" file for the sensei page.
+The sensei page does not need any ninja data, so we dont need to match a ninjaData to an impactData, we just need the impactData.
