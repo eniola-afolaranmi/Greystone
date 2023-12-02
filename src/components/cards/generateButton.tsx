@@ -2,15 +2,14 @@ import * as btn from "./iconButtons";
 
 export default function GenerateButton(activity, activityIndex, currentActivityID, activityNotes) {
   //The reason activity_name is like this is because that is how the DB columns are named.
-  const activityName = activity.activity_name;
-  const activityType = activityName.substring(0, activityName.indexOf(":"));
-  const notes = activityNotes != 0 ? activityNotes : "No Notes";
+
+  const activityType = activity.substring(0, activity.indexOf(":"));
   let sizeValue = 20;
   let colour: string = "";
 
   //Checks to see what colour this specific buttons should be. Green is completed (less than currentActivityID).
   //Yellow is current working project.
-  //grey is not reached.
+  //Grey is not reached.
   if (currentActivityID > activity.activity_id) {
     colour = "green";
   } else if (currentActivityID == activity.activity_id) {
@@ -25,14 +24,14 @@ export default function GenerateButton(activity, activityIndex, currentActivityI
       return (
         <div
           className="buildButtonComp"
-          key={activityIndex + activityName}
+          key={activityIndex + activity}
         >
           <btn.GetBuildIcon
-            key={activityName}
+            key={activity}
             color={colour}
             size={sizeValue}
-            activityName={activityName}
-            notes={notes}
+            activityName={activity}
+            notes={activityNotes}
           />
         </div>
       );
@@ -41,14 +40,14 @@ export default function GenerateButton(activity, activityIndex, currentActivityI
       return (
         <div
           className="solveButtonComp"
-          key={activityIndex + activityName}
+          key={activityIndex + activity}
         >
           <btn.GetSolveIcon
-            key={activityName}
+            key={activity}
             color={colour}
             size={sizeValue}
-            activityName={activityName}
-            notes={notes}
+            activityName={activity}
+            notes={activityNotes}
           />
         </div>
       );
@@ -57,14 +56,14 @@ export default function GenerateButton(activity, activityIndex, currentActivityI
       return (
         <div
           className="exploreButtonComp"
-          key={activityIndex + activityName}
+          key={activityIndex + activity}
         >
           <btn.GetExploreIcon
-            key={activityName}
+            key={activity}
             color={colour}
             size={sizeValue}
-            activityName={activityName}
-            notes={notes}
+            activityName={activity}
+            notes={activityNotes}
           />
         </div>
       );
@@ -73,14 +72,14 @@ export default function GenerateButton(activity, activityIndex, currentActivityI
       return (
         <div
           className="questButtonComp"
-          key={activityIndex + activityName}
+          key={activityIndex + activity}
         >
           <btn.GetTrophyIcon
-            key={activityName}
+            key={activity}
             color={colour}
             size={sizeValue}
-            activityName={activityName}
-            notes={notes}
+            activityName={activity}
+            notes={activityNotes}
           />
         </div>
       );
@@ -89,14 +88,14 @@ export default function GenerateButton(activity, activityIndex, currentActivityI
       return (
         <div
           className="discoveryButtonComp"
-          key={activityIndex + activityName}
+          key={activityIndex + activity}
         >
           <btn.GetDiscoveryIcon
-            key={activityName}
+            key={activity}
             color={colour}
             size={sizeValue}
-            activityName={activityName}
-            notes={notes}
+            activityName={activity}
+            notes={activityNotes}
           />
         </div>
       );
@@ -105,14 +104,14 @@ export default function GenerateButton(activity, activityIndex, currentActivityI
       return (
         <div
           className="adventureButtonComp"
-          key={activityIndex + activityName}
+          key={activityIndex + activity}
         >
           <btn.GetTrophyIcon
-            key={activityName}
+            key={activity}
             color={colour}
             size={sizeValue}
-            activityName={activityName}
-            notes={notes}
+            activityName={activity}
+            notes={activityNotes}
           />
         </div>
       );

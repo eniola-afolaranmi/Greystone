@@ -14,41 +14,53 @@ export default async function compileData(ninjaName: string | undefined) {
       })
     : undefined;
 
-  console.log(
-    "\n================================\n================================\n",
-    impactData[0].Levels[0],
-    "\n================================\n================================\n",
-    ninjaData,
-    "\n================================\n================================\n"
-  );
+  // console.log(
+  //   "\n++++++++++++++++++++++++++++++++\n++++++++++++++++++++++++++++++++\n",
+  //   impactData[0].Levels[0].Activities,
+  //   "\n================================\n================================\n",
+  //   ninjaData,
+  //   "\n================================\n================================\n"
+  // );
 
   if (ninjaData && Object.keys(ninjaData.notes).length > 0) {
-    let compiledData: CompiledData;
-    for (let noteIndex: number = 0; noteIndex < Object.keys(ninjaData.notes).length; noteIndex++) {
+    //This is an object that will store the combined data of impactData and ninjaData.
+    //It will be returned for the component(s) to use to generate the session cards and website.
+    let compiledData: CompiledData = {
+      id: ninjaData.id,
+      name: ninjaData.name,
+      currentActivity: ninjaData.currentActivity,
+      currentBelt: ninjaData.currentBelt,
+      progress: impactData,
+    };
+
+    //This for loop will go over each note and search for its matching activity in impactData.
+    for (let noteIndex: number = 1; noteIndex != Object.keys(ninjaData.notes).length; noteIndex++) {
       let currentNote = ninjaData.notes[noteIndex];
-      // let activ = impactData.find((belt: any) => {
-      //   belt.Levels.find((level: any) => {
-      //     level.Activities.find((activity: any) => {
-      //       const thing = activity.activity_id == currentNote.activity_id ? { activity, currentNote } : false;
-      //       console.log(thing);
-      //     });
-      //   });
-      // });
+      //Loop over each belt.
+      impactData.findIndex((belt: any, beltIndex: number) => {
+        //Loop over each Level.
+        belt.Levels.findIndex((level: any, levelIndex: number) => {
+          //Loop over each activity until the matching activity for the note is found.
+          level.Activities.findIndex((activity: any, activIndex: number) => {
+            //Create a copy of the activity.
+            const currentActivity = compiledData.progress[beltIndex].Levels[levelIndex].Activities[activIndex];
+            // console.log(activIndex, activity);
+            //Create a new activity that combines the default/blank activity and the note that matches it.
+            const newActivity =
+              activity.id == currentNote.activity_id
+                ? { ...currentActivity, notes: { ...currentNote } }
+                : { ...currentActivity, notes: {} };
+            compiledData.progress[beltIndex].Levels[levelIndex].Activities[activIndex] = newActivity;
+            //This is just for debugging. Will leave here for now.
+            // compiledData.progress[beltIndex].Levels[levelIndex].Activities[activIndex].notes
+            //   ? console.log(compiledData.progress[beltIndex].Levels[levelIndex].Activities[activIndex])
+            //   : false;
+          });
+        });
+      });
     }
-    return compileData;
+    return compiledData;
   } else {
     return <>Something went wrong in compileData.tsx!</>;
   }
-
-  // for (let belts: number = 0; belts < Object.keys(impactData).length; belts++) {
-  //   for (let levels: number = 0; levels < Object.keys(impactData[belts].Levels).length; levels++) {
-  //     for (
-  //       let activities: number = 0;
-  //       activities < Object.keys(impactData[belts].Levels[levels].Activities).length;
-  //       activities++
-  //     ) {
-
-  //     }
-  //   }
-  // }
 }

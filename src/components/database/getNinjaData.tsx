@@ -14,8 +14,8 @@ export default async function getNinjaData(ninjaName: string | undefined) {
   //.then() is from async. It runs an unnamed arrow function, that we define, once the await promise returns.
   return await supabase
     .from("Ninjas")
-    .select("*, Notes(activity_id, focus_level, note)")
-    .order("ninja_id", { ascending: true })
+    .select("*, Notes(id, activity_id, focus_level, note)")
+    .order("id", { ascending: true })
     .eq("name", ninjaName)
     .then((resolve) => {
       //Checks to see if the packet is not null and that resolve.data has something in it.
@@ -23,7 +23,7 @@ export default async function getNinjaData(ninjaName: string | undefined) {
         //Convert the fetched JSON into usable string data.
         const parsed = JSON.parse(JSON.stringify(resolve.data[0]));
         const ninjaData: NinjaData = {
-          id: parsed.ninja_id,
+          id: parsed.id,
           name: parsed.name,
           currentActivity: parsed.current_activity_id,
           currentBelt: parsed.current_belt_id,

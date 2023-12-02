@@ -9,8 +9,8 @@ export default async function getImpactData() {
   //Refer to getNinjaData.tsx for detailed comments on the supabase call. They're basically the same thing.
   return await supabase
     .from("Belts")
-    .select("belt_name, Levels(level_name, Activities(activity_id, level_name, activity_name))")
-    .order("activity_id", { foreignTable: "Levels.Activities", ascending: true })
+    .select("belt_name, Levels(level_name, Activities(id, level_name, activity_name))")
+    .order("id", { foreignTable: "Levels.Activities", ascending: true })
     .then((resolve) => {
       //Checks to see if the packet is not null and that resolve.data has something in it.
       if (resolve.data != null && Object.keys(resolve.data).length > 0) {

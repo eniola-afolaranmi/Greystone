@@ -1,58 +1,60 @@
 import compileData from "../database/compileData";
-import GenerateButton from "./generateActivityButton";
+import getImpactData from "../database/getImpactData";
+import GenerateButton from "./generateButton";
 
 //This function is designed to loop over each level and generate buttons that display
 //the relevant data for each activity.
 export default async function GenerateSessionCard(ninjaName: string | undefined) {
-  let parsedLevels = [];
-  let finalData = [];
-  let index = 1;
+  let parsedLevels = Array();
+  let finalData = Array();
+  let index = 0;
+  let ninjaData;
 
-  // if (ninjaName) {
-  //   ninjaData = await getNinjaData(ninjaName).then((resolve) => {
-  //     return resolve;
-  //   });
-  // } else {
-  //   ninjaData = await getSenseiData().then((resolve) => {
-  //     return resolve;
-  //   });
-  // }
+  if (ninjaName) {
+    ninjaData = await compileData(ninjaName).then((resolve) => {
+      return resolve;
+    });
+  } else {
+    ninjaData = await getImpactData().then((resolve) => {
+      return resolve;
+    });
+  }
 
-  //Perfect spot to use a ternary instead of an if()
-  const ninjaData = await compileData(ninjaName);
-
-  // for (let belt = 0; belt < Object.keys(ninjaData.beltData).length; belt++) {
-  //   //This loop goes over each level in the object and then goes through each activity to generate button components for them.
-  //   for (let level = 0; level < Object.keys(ninjaData[belt].beltData).length; level++) {
-  //     let currentLevel = ninjaData[belt];
-  //     parsedLevels.push([]);
-  //     //Loop over each activity inside a level.
-  //     //Creates a react component for each activity. The components are buttons with the associated activity name, note, status, etc.
-  //     //Each activity newly generated button is then placed into it's levels nested array.
-  //     //Item is each individial activity.
-  //     for (let item = 0; item < Object.keys(currentLevel).length; item++) {
-  //       parsedLevels[level].push(
-  //         GenerateButton(
-  //           currentLevel[item],
-  //           index,
-  //           ninjaData.currentActivityID,
-  //           currentLevel[item].Notes > 0 ? currentLevel[item].Notes : undefined
-  //         )
-  //       );
-  //       index++;
-  //     }
-  //   }
-  //   //This loop goes through each level and order the buttons like the physical session cards.
-  //   for (let button = 0; button < Object.keys(parsedLevels).length; button++) {
-  //     finalData.push(
-  //       <div
-  //         key={"level" + button}
-  //         className="flex flex-row items-end m-1"
-  //       >
-  //         {parsedLevels[button]}
-  //       </div>
-  //     );
-  //   }
-  // }
-  // return <pre>{finalData}</pre>;
+  for (let beltIndex = 0; beltIndex < Object.keys(ninjaData.progress).length; beltIndex++) {
+    //This loop goes over each level in the object and then goes through each activity to generate button components for them.
+    parsedLevels.push([]);
+    for (let levelIndex = 0; levelIndex < Object.keys(ninjaData.progress[beltIndex].Levels).length; levelIndex++) {
+      let currentLevel = ninjaData.progress[beltIndex].Levels[levelIndex];
+      parsedLevels[beltIndex].push([]);
+      //Loop over each activity inside a level.
+      //Creates a react component for each activity. The components are buttons with the associated activity name, notes, status, etc.
+      //Each activity's newly generated button is then placed into its level's nested array.
+      for (let activityIndex = 0; activityIndex < Object.keys(currentLevel.Activities).length; activityIndex++) {
+        parsedLevels[beltIndex][levelIndex].push([]);
+        const currentActivity = currentLevel.Activities[activityIndex];
+        parsedLevels[beltIndex][levelIndex][activityIndex].push(
+          GenerateButton(
+            currentActivity.activity_name,
+            currentActivity.id,
+            ninjaData.currentActivityID,
+            Object.keys(currentActivity.notes).length > 0 ? currentActivity.notes : "No Notes"
+          )
+        );
+        index++;
+      }
+    }
+    //This loop goes through each level and order the buttons like the physical session cards.
+    for (let button = 0; button < Object.keys(parsedLevels).length; button++) {
+      finalData.push(
+        <div
+          key={"level" + button}
+          className="flex flex-row items-end m-1"
+        >
+          {parsedLevels}
+        </div>
+      );
+    }
+  }
+  console.log(finalData);
+  return <pre>{finalData}</pre>;
 }
