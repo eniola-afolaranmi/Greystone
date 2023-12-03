@@ -5,15 +5,16 @@ import { IconTool, IconPlanet, IconBug, IconTrophy } from "@tabler/icons-react";
 const popoverWidth = 300;
 const scrollbarHeight = 75;
 
-function parseNotes(notes) {
-  if (notes == ("No Notes" || undefined)) {
+function parseNotes(note) {
+  console.log(note, "123123123123");
+  if (note.note == ("No Notes" || undefined)) {
     return;
+  } else {
+    const newNote = new Array();
+    newNote.push("Note: " + note.note + "\n");
+    newNote.push("Focus: " + note.focus_level, "\n");
+    return newNote;
   }
-  const newNotes = new Array();
-  for (let item = 0; item < notes.length; item++) {
-    newNotes.push("Note: " + notes[item].note + "\n");
-  }
-  return newNotes;
 }
 
 export function GetBuildIcon({ color, size, activityName, notes }) {
@@ -66,7 +67,7 @@ export function GetExploreIcon({ color, size, activityName, notes }) {
         <ScrollArea h={scrollbarHeight}>
           <Text size="sm">
             {activityName + "\n"}
-            {notes}
+            {parseNotes(notes)}
           </Text>
         </ScrollArea>
       </Popover.Dropdown>
@@ -93,7 +94,7 @@ export function GetSolveIcon({ color, size, activityName, notes }) {
         <ScrollArea h={scrollbarHeight}>
           <Text size="sm">
             {activityName + "\n"}
-            {notes}
+            {parseNotes(notes)}
           </Text>
         </ScrollArea>
       </Popover.Dropdown>
@@ -120,7 +121,7 @@ export function GetTrophyIcon({ color, size, activityName, notes }) {
         <ScrollArea h={scrollbarHeight}>
           <Text size="sm">
             {activityName + "\n"}
-            {notes}
+            {parseNotes(notes)}
           </Text>
         </ScrollArea>
       </Popover.Dropdown>
@@ -147,7 +148,7 @@ export function GetDiscoveryIcon({ color, size, activityName, notes }) {
         <ScrollArea h={scrollbarHeight}>
           <Text size="sm">
             {activityName + "\n"}
-            {notes}
+            {parseNotes(notes)}
           </Text>
         </ScrollArea>
       </Popover.Dropdown>

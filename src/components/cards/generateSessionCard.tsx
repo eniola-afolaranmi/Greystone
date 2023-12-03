@@ -5,9 +5,7 @@ import GenerateButton from "./generateButton";
 //This function is designed to loop over each level and generate buttons that display
 //the relevant data for each activity.
 export default async function GenerateSessionCard(ninjaName: string | undefined) {
-  let parsedLevels = Array();
-  let finalData = Array();
-  let index = 0;
+  let parsedProgress = Array();
   let ninjaData;
 
   if (ninjaName) {
@@ -19,42 +17,56 @@ export default async function GenerateSessionCard(ninjaName: string | undefined)
       return resolve;
     });
   }
-
   for (let beltIndex = 0; beltIndex < Object.keys(ninjaData.progress).length; beltIndex++) {
     //This loop goes over each level in the object and then goes through each activity to generate button components for them.
-    parsedLevels.push([]);
+    parsedProgress.push([]);
     for (let levelIndex = 0; levelIndex < Object.keys(ninjaData.progress[beltIndex].Levels).length; levelIndex++) {
       let currentLevel = ninjaData.progress[beltIndex].Levels[levelIndex];
-      parsedLevels[beltIndex].push([]);
+      parsedProgress[beltIndex].push([]);
       //Loop over each activity inside a level.
       //Creates a react component for each activity. The components are buttons with the associated activity name, notes, status, etc.
       //Each activity's newly generated button is then placed into its level's nested array.
       for (let activityIndex = 0; activityIndex < Object.keys(currentLevel.Activities).length; activityIndex++) {
-        parsedLevels[beltIndex][levelIndex].push([]);
+        // parsedProgress[beltIndex][levelIndex].push([]);
         const currentActivity = currentLevel.Activities[activityIndex];
-        parsedLevels[beltIndex][levelIndex][activityIndex].push(
-          GenerateButton(
-            currentActivity.activity_name,
-            currentActivity.id,
-            ninjaData.currentActivityID,
-            Object.keys(currentActivity.notes).length > 0 ? currentActivity.notes : "No Notes"
-          )
-        );
-        index++;
+        if (currentActivity.id <= ninjaData.currentActivity) {
+          parsedProgress[beltIndex][levelIndex].push(GenerateButton(currentActivity, ninjaData.currentActivity));
+        }
+        //  else {
+        //    parsedProgress[beltIndex][levelIndex].push(undefined);
+        //  }
       }
-    }
-    //This loop goes through each level and order the buttons like the physical session cards.
-    for (let button = 0; button < Object.keys(parsedLevels).length; button++) {
-      finalData.push(
+      parsedProgress[beltIndex][levelIndex] = (
         <div
-          key={"level" + button}
-          className="flex flex-row items-end m-1"
+          key={"level" + levelIndex}
+          className="flex flex-row items-start m-1"
         >
-          {parsedLevels}
+          {parsedProgress[beltIndex][levelIndex]}
         </div>
       );
     }
   }
-  console.log(finalData);
-  return <pre>{finalData}</pre>;
+  ninjaData.progress = parsedProgress;
+  //This loop goes through each level and order the buttons like the physical session cards.
+  // for (let button = 0; button < Object.keys(parsedLevels).length; button++) {
+  //   console.log(
+  //     "\n\n",
+  //     "++++++++++++++++++++++++++++++++",
+  //     "\n\n",
+  //     parsedLevels,
+  //     "\n\n",
+  //     "================================",
+  //     "\n\n"
+  //   );
+  //   finalData.push(
+  //     <div
+  //       key={"level" + button}
+  //       className="flex flex-row items-end m-1"
+  //     >
+  //       {parsedLevels}
+  //     </div>
+  //   );
+  // }
+
+  return <pre>{ninjaData}</pre>;
 }

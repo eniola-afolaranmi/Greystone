@@ -6,6 +6,8 @@ import BackgroundImage from "../components/backgroundImage";
 // These styles apply to every route in the application
 import "./globals.css";
 
+export const revalidate = 0;
+export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Sensei Notes",
   description: "Created by Byron Corbett and Eniola Afolaranmi with Nextjs, Mantine, and Supabase",

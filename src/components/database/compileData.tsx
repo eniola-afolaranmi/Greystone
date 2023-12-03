@@ -32,7 +32,6 @@ export default async function compileData(ninjaName: string | undefined) {
       currentBelt: ninjaData.currentBelt,
       progress: impactData,
     };
-
     //This for loop will go over each note and search for its matching activity in impactData.
     for (let noteIndex: number = 1; noteIndex != Object.keys(ninjaData.notes).length; noteIndex++) {
       let currentNote = ninjaData.notes[noteIndex];
@@ -44,12 +43,11 @@ export default async function compileData(ninjaName: string | undefined) {
           level.Activities.findIndex((activity: any, activIndex: number) => {
             //Create a copy of the activity.
             const currentActivity = compiledData.progress[beltIndex].Levels[levelIndex].Activities[activIndex];
-            // console.log(activIndex, activity);
             //Create a new activity that combines the default/blank activity and the note that matches it.
             const newActivity =
               activity.id == currentNote.activity_id
                 ? { ...currentActivity, notes: { ...currentNote } }
-                : { ...currentActivity, notes: {} };
+                : { ...currentActivity, notes: { undefined } };
             compiledData.progress[beltIndex].Levels[levelIndex].Activities[activIndex] = newActivity;
             //This is just for debugging. Will leave here for now.
             // compiledData.progress[beltIndex].Levels[levelIndex].Activities[activIndex].notes

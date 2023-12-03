@@ -1,37 +1,40 @@
 import * as btn from "./iconButtons";
 
-export default function GenerateButton(activity, activityIndex, currentActivityID, activityNotes) {
+export default function GenerateButton(activity, currentActivityID: number) {
   //The reason activity_name is like this is because that is how the DB columns are named.
 
-  const activityType = activity.substring(0, activity.indexOf(":"));
   let sizeValue = 20;
   let colour: string = "";
+  const id = activity.id;
+  const notes = activity.notes;
+  const name = activity.activity_name;
+  const type = name.substring(0, name.indexOf(":"));
 
   //Checks to see what colour this specific buttons should be. Green is completed (less than currentActivityID).
   //Yellow is current working project.
   //Grey is not reached.
-  if (currentActivityID > activity.activity_id) {
+  if (currentActivityID > activity.id) {
     colour = "green";
-  } else if (currentActivityID == activity.activity_id) {
+  } else if (currentActivityID == activity.id) {
     colour = "yellow";
     sizeValue = 25;
   } else {
     colour = "grey";
   }
 
-  switch (activityType) {
+  switch (type) {
     case "Build":
       return (
         <div
           className="buildButtonComp"
-          key={activityIndex + activity}
+          key={id + name}
         >
           <btn.GetBuildIcon
             key={activity}
             color={colour}
             size={sizeValue}
-            activityName={activity}
-            notes={activityNotes}
+            activityName={name}
+            notes={notes}
           />
         </div>
       );
@@ -40,14 +43,14 @@ export default function GenerateButton(activity, activityIndex, currentActivityI
       return (
         <div
           className="solveButtonComp"
-          key={activityIndex + activity}
+          key={id + name}
         >
           <btn.GetSolveIcon
             key={activity}
             color={colour}
             size={sizeValue}
-            activityName={activity}
-            notes={activityNotes}
+            activityName={name}
+            notes={notes}
           />
         </div>
       );
@@ -56,14 +59,14 @@ export default function GenerateButton(activity, activityIndex, currentActivityI
       return (
         <div
           className="exploreButtonComp"
-          key={activityIndex + activity}
+          key={id + name}
         >
           <btn.GetExploreIcon
             key={activity}
             color={colour}
             size={sizeValue}
-            activityName={activity}
-            notes={activityNotes}
+            activityName={name}
+            notes={notes}
           />
         </div>
       );
@@ -72,14 +75,14 @@ export default function GenerateButton(activity, activityIndex, currentActivityI
       return (
         <div
           className="questButtonComp"
-          key={activityIndex + activity}
+          key={id + name}
         >
           <btn.GetTrophyIcon
             key={activity}
             color={colour}
             size={sizeValue}
-            activityName={activity}
-            notes={activityNotes}
+            activityName={name}
+            notes={notes}
           />
         </div>
       );
@@ -88,14 +91,14 @@ export default function GenerateButton(activity, activityIndex, currentActivityI
       return (
         <div
           className="discoveryButtonComp"
-          key={activityIndex + activity}
+          key={id + name}
         >
           <btn.GetDiscoveryIcon
             key={activity}
             color={colour}
             size={sizeValue}
-            activityName={activity}
-            notes={activityNotes}
+            activityName={name}
+            notes={notes}
           />
         </div>
       );
@@ -104,14 +107,14 @@ export default function GenerateButton(activity, activityIndex, currentActivityI
       return (
         <div
           className="adventureButtonComp"
-          key={activityIndex + activity}
+          key={id + name}
         >
           <btn.GetTrophyIcon
             key={activity}
             color={colour}
             size={sizeValue}
-            activityName={activity}
-            notes={activityNotes}
+            activityName={name}
+            notes={notes}
           />
         </div>
       );
